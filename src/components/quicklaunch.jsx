@@ -98,6 +98,11 @@ export default function QuickLaunch({ servicesAndBookmarks, searchString, setSea
     } else if (event.key === "ArrowUp" && currentItemIndex > 0) {
       setCurrentItemIndex(currentItemIndex - 1);
       event.preventDefault();
+    } else if (event.key === "Tab" || event.key === "ArrowRight") {
+      const result = results[currentItemIndex];
+      if (result && result.type === "searchSuggestion")
+        setSearchString(`${result.name} `)
+      event.preventDefault();
     }
   }
 
