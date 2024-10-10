@@ -52,6 +52,11 @@ export default function QuickLaunch({ servicesAndBookmarks, searchString, setSea
 
   function openCurrentItem(newWindow) {
     const result = results[currentItemIndex];
+
+    if (/https?/.test(result.name)) {
+      result.href = result.name
+    }
+    
     window.open(
       result.href,
       newWindow ? "_blank" : result.target ?? searchProvider?.target ?? settings.target ?? "_blank",
